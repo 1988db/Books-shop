@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    margin: 0 auto;
+    width: 1366px;
+}
+
+header {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+.logo {
+    font-size: 2rem;
+    letter-spacing: 0.06rem;    
+}
+
+.logo-sub {
+    font-size: 0.8rem;
+    letter-spacing: 0.06rem;
+}
+
+nav {
+    display: inline-block;
+}
+
+.menu-li {    
+    list-style-type: none;
+}
+
+.menu-li li{
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.shopping-cart-wrapper {
+    margin-right: 1rem;
+    display: inline-block;
+}
+
+.books-count {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.display {
+    display: flex;
+    flex-wrap: wrap;
+}
