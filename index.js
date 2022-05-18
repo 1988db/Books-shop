@@ -49,19 +49,17 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     //fetch data from json file
 
-    const getData = () => {
-        fetch('books.json')
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                console.log('Get data func started')
-            });
-    }
+   
+    fetch('books.json')
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            appendData(data);            
+        });
+    
 
-    getData();
-
+    console.log(data)
     //append page structure to the main section
     const fragment = new DocumentFragment();
     fragment.appendChild(main);
