@@ -48,14 +48,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
     main.appendChild(displaySection);
 
     //fetch data from json file
-
+    let data;
    
     fetch('books.json')
         .then(response => {
             return response.json();
         })
         .then(data => {
-            appendData(data);            
+            data = data;            
         });
     
 
