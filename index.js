@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', ()=> {
+
+    //main
+    const main = document.createElement('main')
     //header section
-        //logo
-    const header = document.createElement('header');    
+        //logo    
+    const header = document.createElement('header');
+    main.appendChild(header);    
     const logoWrapper = document.createElement('div');
     header.appendChild(logoWrapper);       
     const h1 = document.createElement('h1');
@@ -36,20 +40,22 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const booksCount = document.createElement('div');
     booksCount.classList.add('books-count');
     booksCount.textContent = '0';    
-    shoppingCartWrapper.appendChild(booksCount);
-    
-    const fragment = new DocumentFragment();
-    fragment.appendChild(header);
-    const main = document.querySelector('main');
-    main.appendChild(fragment);
+    shoppingCartWrapper.appendChild(booksCount);   
 
     //display section
-    const newDisplaySection = document.createElement('section');
-    newDisplaySection.classList.add('display');
+    const displaySection = document.createElement('section');
+    displaySection.classList.add('display');
+    main.appendChild(displaySection);
 
     //fetch data from json file
-
     const displayFunction = (object) => {
         
     }
+
+    //append page structure to the main section
+    const fragment = new DocumentFragment();
+    fragment.appendChild(main);
+    
+    const wrapper = document.querySelector('.wrapper');
+    wrapper.appendChild(fragment);
 });
