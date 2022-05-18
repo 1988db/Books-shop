@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     h1.textContent = 'Books shop';
     const pLogo = document.createElement('p');
     pLogo.classList.add('logo-sub');
-    pLogo.innerText = 'The best on-line book shop';  
+    pLogo.innerText = 'The best programming books';  
     logoWrapper.appendChild(h1);
     logoWrapper.appendChild(pLogo);
         //nav
@@ -48,9 +48,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
     main.appendChild(displaySection);
 
     //fetch data from json file
-    const displayFunction = (object) => {
-        
+
+    const getData = () => {
+        fetch('../books.json')
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+            });
     }
+
+    getData();
 
     //append page structure to the main section
     const fragment = new DocumentFragment();
