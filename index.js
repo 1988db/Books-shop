@@ -50,12 +50,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //fetch data from json file
 
     const getData = () => {
-        fetch('../books.json')
+        fetch('books.json')
             .then(response => {
                 return response.json();
             })
             .then(data => {
                 console.log(data);
+                console.log('Get data func started')
             });
     }
 
