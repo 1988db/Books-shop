@@ -48,18 +48,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
     main.appendChild(displaySection);
 
     //fetch data from json file
-    let data;
+    let object;
    
     fetch('books.json')
         .then(response => {
             return response.json();
         })
         .then(data => {
-            data = data;            
+            object = data;            
         });
     
 
-    console.log(data)
+    console.log(object)
     //append page structure to the main section
     const fragment = new DocumentFragment();
     fragment.appendChild(main);
