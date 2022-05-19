@@ -4,9 +4,9 @@
     box-sizing: border-box;
 }
 
-main {
+.wrapper {
     margin: 0 auto;
-    width: 1366px;
+    width: 1366px;      
 }
 
 header {
@@ -16,6 +16,12 @@ header {
     align-items: center;
     background-color: black;
     color: white;
+    position: sticky;
+    top: 0;
+}
+
+.logo-wrapper {
+    margin-left: 1.25rem;
 }
 
 .logo {
@@ -42,7 +48,7 @@ nav {
 }
 
 .shopping-cart-wrapper {
-    margin-right: 1rem;
+    margin-right: 1.25rem;
     display: inline-block;
 }
 
@@ -57,26 +63,41 @@ nav {
 }
 
 .products {
-    padding: 0 20px;
+    padding: 15px 20px;
 }
 
 .our-books {
     text-align: center;
+    margin-bottom: 15px;
 }
 
 .products-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 25px;
+    column-gap: 19px;
 }
 
 .product-card {
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+    padding: 15px;
+    box-shadow: 2px 2px 5px rgb(182, 179, 179);
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .product-img {
-    height: 200px;    
+    height: 200px; 
+    border: 2px solid rgb(182, 179, 179);  
 }
 
 .author, .price {
@@ -84,7 +105,57 @@ nav {
     text-align: center;
 }
 
+.author {
+    color: rgb(85, 82, 82);
+}
+
+.price {
+    font-size: 1rem;
+}
+
+.title {
+    text-align: center;
+}
+
+.product-img, .author, .title, .price {
+    margin-bottom: 15px;
+}
+
+.price-value {
+    color: red;
+}
+
 .card-buttons-wrapper {
     display: flex;
     justify-content: space-between;
+}
+
+.card-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    border: 1px solid black;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgb(182, 179, 179); 
+}
+
+.show-more {
+    background-color: antiquewhite;
+    margin-right: 3px;
+}
+
+.show-more:hover {
+    background-color: rgb(255, 245, 231);
+    cursor: pointer;
+}
+
+.add-to-cart {
+    background-color: tomato;
+    margin-left: 3px;
+}
+
+.add-to-cart:hover {
+    background-color: rgb(253, 115, 91);
+    cursor: pointer;
 }
