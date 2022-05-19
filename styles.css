@@ -18,6 +18,7 @@ header {
     color: white;
     position: sticky;
     top: 0;
+    box-shadow: 2px 2px 5px rgb(182, 179, 179);
 }
 
 .logo-wrapper {
@@ -158,4 +159,46 @@ nav {
 .add-to-cart:hover {
     background-color: rgb(253, 115, 91);
     cursor: pointer;
+}
+
+
+
+
+
+/* footer*/
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+    background-color: black;
+    box-shadow: -2px -2px 5px rgb(182, 179, 179);
+}
+
+.github-wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+
+.github:link {
+    color: white;
+    text-decoration: none;
+}
+
+.github:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.github:hover {
+    color: lightgray;
+    text-decoration: none;
+}
+
+.github:active {
+    color: tomato;
+    text-decoration: none;
 }

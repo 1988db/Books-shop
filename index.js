@@ -56,9 +56,36 @@ document.addEventListener('DOMContentLoaded', ()=> {
     products.appendChild(productsH2);
     const productsContainer = document.createElement('div');
     productsContainer.classList.add('products-container');
-    products.appendChild(productsContainer);
-    
+    products.appendChild(productsContainer);    
     main.appendChild(displaySection);
+    //footer section
+    const footer = document.createElement('footer');
+    const githubWrapper = document.createElement('div');
+    githubWrapper.classList.add('github-wrapper');
+    const githubLogo = document.createElement('img');
+    githubLogo.setAttribute('src', 'img/GitHub-Mark-Light-32px.png');
+    githubLogo.setAttribute('alt', 'github logo');
+    githubWrapper.appendChild(githubLogo);
+    const github = document.createElement('a');
+    github.classList.add('github');
+    github.setAttribute('href', 'https://github.com/1988db');
+    github.setAttribute('target', '_blank');
+    github.textContent = '1988db 2022';
+    githubWrapper.appendChild(github);
+    footer.appendChild(githubWrapper);
+    const addressWrapper = document.createElement('div');
+    addressWrapper.classList.add('address-wrapper');
+    const companyName = document.createElement('h4');
+    companyName.classList.add('company-name');
+    companyName.textContent = 'Books Shop';
+    addressWrapper.appendChild(companyName);
+    const street = document.createElement('p');
+    street.textContent = 'ul. Plac Europejski 1';
+    addressWrapper.appendChild(street);
+    const city = document.createElement('p');
+    city.textContent = '00-844 Warszawa';
+    addressWrapper.appendChild(city);
+    footer.appendChild(addressWrapper);
 
     //fetch data from json file
     let booksList = [{
@@ -175,6 +202,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //append page structure to DOM
     const fragment = new DocumentFragment();
     fragment.appendChild(main);
+    fragment.appendChild(footer);
     
     const wrapper = document.querySelector('.wrapper');
     wrapper.appendChild(fragment);
