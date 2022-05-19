@@ -131,7 +131,7 @@ nav {
     justify-content: space-between;
 }
 
-.card-button {
+.card-button, .popup-close {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,12 +141,12 @@ nav {
     box-shadow: 2px 2px 5px rgb(182, 179, 179); 
 }
 
-.show-more {
+.show-more, .popup-close {
     background-color: antiquewhite;
     margin-right: 3px;
 }
 
-.show-more:hover {
+.show-more:hover, .popup-close:hover {
     background-color: rgb(255, 245, 231);
     cursor: pointer;
 }
@@ -161,7 +161,45 @@ nav {
     cursor: pointer;
 }
 
+/*popup window*/
 
+.popup {
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.popup-container {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%; /* Could be more or less, depending on screen size */
+  display: flex;
+  flex-direction: column;
+
+}
+
+.popup-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.popup-description {
+    font-size: 1.25rem;
+    margin-bottom: 20px
+}
+
+.popup-close {
+    width: 30%;
+}
 
 
 

@@ -58,6 +58,24 @@ document.addEventListener('DOMContentLoaded', ()=> {
     productsContainer.classList.add('products-container');
     products.appendChild(productsContainer);    
     main.appendChild(displaySection);
+      //pop-up product card
+    const popup = document.createElement('div');
+    popup.classList.add('popup');
+    const popupContainer = document.createElement('div');
+    popupContainer.classList.add('popup-container');
+    popup.appendChild(popupContainer);
+    const popupTitle = document.createElement('h3');
+    popupTitle.classList.add('popup-title');    
+    const popupDescription = document.createElement('p');
+    popupDescription.classList.add('popup-description');    
+    const popupClose = document.createElement('div');
+    popupClose.classList.add('popup-close');
+    popupClose.textContent = 'Close';
+    popupClose.addEventListener('click', closePopup)
+    popupContainer.appendChild(popupTitle);
+    popupContainer.appendChild(popupDescription);
+    popupContainer.appendChild(popupClose);
+    productsContainer.appendChild(popup);
     //footer section
     const footer = document.createElement('footer');
     const githubWrapper = document.createElement('div');
@@ -211,6 +229,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const drawProductCart = (object) => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
+        productCard.dataset.id = object.id;
+        productCard.addEventListener('click', openPopup);        
         const contentWrapper = document.createElement('div');
         contentWrapper.classList.add('content-wrapper');
         productCard.appendChild(contentWrapper);
@@ -252,9 +272,24 @@ document.addEventListener('DOMContentLoaded', ()=> {
     };
 
     //add and draw products
-    function addProducts(array) {
-        array.forEach(el => drawProductCart(el));
+    function addProducts(array) {        
+        array.forEach(el => {
+            el.id = array.indexOf(el);
+            drawProductCart(el);
+        });
     }
 
     addProducts(booksList);
+
+    //open popup function
+    function openPopup(e) {        
+        popupTitle.textContent = booksList[e.target.closest('.product-card').dataset.id].title;
+        popupDescription.textContent = booksList[e.target.closest('.product-card').dataset.id].description;
+        popup.style.display = 'block';
+    }
+
+    //close Popup function
+    function closePopup() {
+        popup.style.display = 'none';
+    }
 });
