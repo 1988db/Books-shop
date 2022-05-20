@@ -88,6 +88,7 @@ nav {
     width: 250px;
     padding: 15px;
     box-shadow: 2px 2px 5px rgb(182, 179, 179);
+    cursor: grab;
 }
 
 .content-wrapper {
@@ -98,7 +99,8 @@ nav {
 
 .product-img {
     height: 200px; 
-    border: 2px solid rgb(182, 179, 179);  
+    border: 2px solid rgb(182, 179, 179);
+    pointer-events: none;
 }
 
 .author, .price {

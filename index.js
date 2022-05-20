@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', ()=> {
 
+    //variables
+    let pickedBooks = [];
+    let booksQuantity = 0;
+    let totalPrice = 0;
+    let draggedBook;
     //main
     const main = document.createElement('main')
     //header section
@@ -31,7 +36,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const liContacts = document.createElement('li');
     liContacts.textContent = 'Contacts';
     const liShoppingbag = document.createElement('li');
-    liShoppingbag.textContent = 'Shopping bag';    
+    liShoppingbag.textContent = 'Shopping bag';
+    liShoppingbag.addEventListener('dragover', dragOver);
+    liShoppingbag.addEventListener('dragenter', dragEnter);
+    liShoppingbag.addEventListener('dragleave', dragLeave);
+    liShoppingbag.addEventListener('drop', dragDrop);    
     ul.appendChild(liBooks);
     ul.appendChild(liContacts);
     ul.appendChild(liShoppingbag);
@@ -106,13 +115,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
     footer.appendChild(addressWrapper);
 
     //fetch data from json file
-    let booksList = [{
-        "author": "Douglas Crockford",
-        "imageLink": "img/js_the_good_parts.jpg",
-        "title": "JavaScript: The Good Parts",
-        "price": 30,
-        "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
-      },
+    let booksList = [
+        {
+          "author": "Douglas Crockford",
+          "imageLink": "img/js_the_good_parts.jpg",
+          "title": "JavaScript: The Good Parts",
+          "price": 30,
+          "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
+        },
         {
           "author": "David Herman",
           "imageLink": "img/effective_js.jpg",
@@ -120,34 +130,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
           "price": 22,
           "description": "Effective JavaScript is organized around 68 proven approaches for writing better JavaScript, backed by concrete examples. You’ll learn how to choose the right programming style for each project, manage unanticipated problems, and work more successfully with every facet of JavaScript programming from data structures to concurrency"
         },
-        {
-            "author": "Douglas Crockford",
-            "imageLink": "img/js_the_good_parts.jpg",
-            "title": "JavaScript: The Good Parts",
-            "price": 30,
-            "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
-          },
-            {
-              "author": "David Herman",
-              "imageLink": "img/effective_js.jpg",
-              "title": "Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript",
-              "price": 22,
-              "description": "Effective JavaScript is organized around 68 proven approaches for writing better JavaScript, backed by concrete examples. You’ll learn how to choose the right programming style for each project, manage unanticipated problems, and work more successfully with every facet of JavaScript programming from data structures to concurrency"
-            },
-            {
-                "author": "Douglas Crockford",
-                "imageLink": "img/js_the_good_parts.jpg",
-                "title": "JavaScript: The Good Parts",
-                "price": 30,
-                "description": "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must"
-              },
-                {
-                  "author": "David Herman",
-                  "imageLink": "img/effective_js.jpg",
-                  "title": "Effective JavaScript: 68 Specific Ways to Harness the Power of JavaScript",
-                  "price": 22,
-                  "description": "Effective JavaScript is organized around 68 proven approaches for writing better JavaScript, backed by concrete examples. You’ll learn how to choose the right programming style for each project, manage unanticipated problems, and work more successfully with every facet of JavaScript programming from data structures to concurrency"
-                },
         {
           "author": "David Flanagan",
           "imageLink": "img/java_script_the_definitive_guide.jpg",
@@ -225,10 +207,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const wrapper = document.querySelector('.wrapper');
     wrapper.appendChild(fragment);
 
-    //function draw product bag
+    //function draw product card
     const drawProductCard = (object) => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
+        productCard.setAttribute('draggable', true);
+        productCard.addEventListener('dragstart', dragStart);
+        productCard.addEventListener('dragend', dragEnd);        
         productCard.dataset.id = object.id;                
         const contentWrapper = document.createElement('div');
         contentWrapper.classList.add('content-wrapper');
@@ -262,7 +247,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
         const cardButton2 = document.createElement('div');
         cardButton1.classList.add('card-button', 'show-more');
         cardButton2.classList.add('card-button', 'add-to-bag');
-        cardButton1.addEventListener('click', openPopup)
+        cardButton1.addEventListener('click', openPopup);
+        cardButton2.addEventListener('click', addToBag);
         cardButton1.textContent = 'Show more';
         cardButton2.textContent = 'Add to bag';
         cardButtonsWrapper.appendChild(cardButton1);
@@ -290,12 +276,52 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     //close Popup function
     function closePopup() {
-        popup.style.display = 'none';
+      popup.style.display = 'none';
+    }
+
+    //draw shopping bag
+    function drawShoppingBag() {
+
+    }
+
+    //drag-drop functions
+
+    function dragStart() {
+      draggedBook = this.dataset.id;     
+    }
+
+    function dragOver(e) {
+      e.preventDefault();
+            
+    }
+
+    function dragEnter(e) {
+      e.preventDefault();
+      
+    }
+
+    function dragLeave() {
+      
+    }
+
+    function dragEnd() {
+      draggedBook = undefined;      
+    }
+
+    function dragDrop() {
+      pickedBooks.push(draggedBook);
+      booksQuantity = pickedBooks.length;
+      booksCount.textContent = booksQuantity;
+      console.log(pickedBooks)
     }
 
     //add to bag
 
-    function addToBag() {
-
+    function addToBag(e) {
+      pickedBooks.push(e.target.closest('.product-card').dataset.id);
+      booksQuantity = pickedBooks.length;
+      booksCount.textContent = booksQuantity;     
     }
+
+
 });
