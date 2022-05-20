@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     wrapper.appendChild(fragment);
 
     //function draw product bag
-    const drawProductbag = (object) => {
+    const drawProductCard = (object) => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
         productCard.dataset.id = object.id;
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     function addProducts(array) {        
         array.forEach(el => {
             el.id = array.indexOf(el);
-            drawProductbag(el);
+            drawProductCard(el);
         });
     }
 
@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     //add to bag
 
-    //function addTobag() {
+    function addToBag() {
 
     }
 });
