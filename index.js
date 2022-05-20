@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //variables
     let pickedBooks = [];
     let booksQuantity = 0;
+    let bookNr = 0;
     let totalPrice = 0;
     let draggedBook;
     let pages = [];
@@ -358,16 +359,78 @@ document.addEventListener('DOMContentLoaded', ()=> {
       pickedBooks.push(e.target.closest('.product-card').dataset.id);
       booksQuantity = pickedBooks.length;
       booksCount.textContent = booksQuantity;
-      checkQuantity();           
+      drawBookList(e.target.closest('.product-card').dataset.id)
+      checkQuantity();          
     }
 
-    //check books quantity
+    //remove book from the bag
+    function removeBook(e) {
+      let currentItemPosition = Array.from(shoppingBagContent.children).indexOf(e.target.closest('.bag-item')) - 1;
+      pickedBooks.splice(currentItemPosition, 1);
+      booksQuantity = pickedBooks.length;
+      shoppingBagContent.removeChild(e.target.closest('.bag-item'));
+      booksCount.textContent = booksQuantity;
+      checkQuantity();
+    };
+
+    //draw book list in the shopping bag
+    function drawBookList(bookId) {      
+      const bagItem = document.createElement('div');
+      bagItem.classList.add('bag-item');
+      bagItem.dataset.id = bookId;
+      const nrWrapper = document.createElement('div');
+      nrWrapper.classList.add('nr-wrapper');
+      bagItem.appendChild(nrWrapper);    
+      const thumbWrapper = document.createElement('div');
+      thumbWrapper.classList.add('thumb-wrapper');
+      const thumb = document.createElement('img');
+      thumb.classList.add('thumb');
+      thumb.setAttribute('src', booksList[bookId].imageLink);
+      thumb.setAttribute('alt', 'product thumbail');
+      thumbWrapper.appendChild(thumb);
+      bagItem.appendChild(thumbWrapper)
+      const authorWrapper = document.createElement('div');
+      authorWrapper.classList.add('author-wrapper');
+      authorWrapper.textContent = booksList[bookId].author;
+      bagItem.appendChild(authorWrapper);
+      const titleWrapper = document.createElement('div');
+      titleWrapper.classList.add('title-wrapper');
+      titleWrapper.textContent = booksList[bookId].title;
+      bagItem.appendChild(titleWrapper);
+      const priceWrapper = document.createElement('div');
+      priceWrapper.classList.add('price-wrapper');
+      priceWrapper.textContent = 'Price: $';
+      const priceValue2 = document.createElement('span');
+      priceValue2.classList.add('price-value-2');
+      priceValue2.textContent =  + booksList[bookId].price;
+      priceWrapper.appendChild(priceValue2);
+      bagItem.appendChild(priceWrapper);
+      const closeWrapper = document.createElement('div');
+      closeWrapper.classList.add('close-wrapper');
+      const closeX = document.createElement('div');
+      closeX.classList.add('close-x');
+      closeX.textContent = 'X';
+      closeX.addEventListener('click', removeBook);
+      closeWrapper.appendChild(closeX);
+      bagItem.appendChild(closeWrapper);
+      shoppingBagContent.appendChild(bagItem);
+      
+    }
+
+    //check books quantity    
 
     function checkQuantity() {
       if (booksQuantity < 100) {
         booksCount.style.fontSize = '0.8rem';
       } else if(booksQuantity > 99) {
         booksCount.style.fontSize = '0.6rem';
+      }
+      if (booksQuantity == 0) {
+        shoppingBagInfo.classList.remove('hidden')
+        shoppingBagInfo.classList.add('visible');        
+      } else if (booksQuantity > 0) {
+        shoppingBagInfo.classList.remove('visible');
+        shoppingBagInfo.classList.add('hidden')
       }
     }
     
