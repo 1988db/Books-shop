@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     liContacts.textContent = 'Contacts';
     const liShoppingbag = document.createElement('li');
     liShoppingbag.textContent = 'Shopping bag';
+    liShoppingbag.addEventListener('click', drawShoppingBag)
     liShoppingbag.addEventListener('dragover', dragOver);
     liShoppingbag.addEventListener('dragenter', dragEnter);
     liShoppingbag.addEventListener('dragleave', dragLeave);
@@ -277,12 +278,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //close Popup function
     function closePopup() {
       popup.style.display = 'none';
-    }
-
-    //draw shopping bag
-    function drawShoppingBag() {
-
-    }
+    }   
 
     //drag-drop functions
 
@@ -312,7 +308,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
       pickedBooks.push(draggedBook);
       booksQuantity = pickedBooks.length;
       booksCount.textContent = booksQuantity;
-      console.log(pickedBooks)
+      checkQuantity();
     }
 
     //add to bag
@@ -320,8 +316,54 @@ document.addEventListener('DOMContentLoaded', ()=> {
     function addToBag(e) {
       pickedBooks.push(e.target.closest('.product-card').dataset.id);
       booksQuantity = pickedBooks.length;
-      booksCount.textContent = booksQuantity;     
+      booksCount.textContent = booksQuantity;
+      checkQuantity();           
     }
 
+    //check books quantity
 
+    function checkQuantity() {
+      if (booksQuantity < 100) {
+        booksCount.style.fontSize = '0.8rem';
+      } else if(booksQuantity > 99) {
+        booksCount.style.fontSize = '0.6rem';
+      }
+    }
+
+     //draw shopping bag
+     function drawShoppingBag() {
+      const shoppingBagSection = document.createElement('div');
+      shoppingBagSection.classList.add('shopping-bag-section');
+      const shoppingBagHeading = document.createElement('h2');
+      shoppingBagHeading.classList.add('shopping-bag-heading');
+      shoppingBagHeading.textContent = 'Your shopping bag';
+      shoppingBagSection.appendChild(shoppingBagHeading);
+      const shoppingBagContent = document.createElement('div');
+      shoppingBagContent.classList.add('shopping-bag-content');
+      const shoppingBagInfo = document.createElement('h3');
+      shoppingBagInfo.classList.add('shopping-bag-info');
+      shoppingBagInfo.textContent = 'Your shopping bag is empty. Drag and drop chosen book to the shopping bag or click on "Add to bag" button on chosen book card';
+      shoppingBagContent.appendChild(shoppingBagInfo);
+      shoppingBagSection.appendChild(shoppingBagContent);
+      const summaryWrapper = document.createElement('div');
+      summaryWrapper.classList.add('summary-wrapper');
+      const total = document.createElement('span');
+      total.classList.add('total');
+      total.textContent = 'Total: $0';
+      summaryWrapper.appendChild(total);
+      const summaryButtonsWrapper = document.createElement('div');
+      summaryButtonsWrapper.classList.add('summary-buttons-wrapper');
+      const removeAllBtn = document.createElement('div');
+      removeAllBtn.classList.add('summary-btn', 'remove-all');
+      removeAllBtn.textContent = 'Remove all';
+      summaryButtonsWrapper.appendChild(removeAllBtn);
+      const confirmBtn = document.createElement('div');
+      confirmBtn.classList.add('summary-btn', 'confirm');
+      confirmBtn.textContent = 'Confirm order';
+      summaryButtonsWrapper.appendChild(confirmBtn);
+      summaryWrapper.appendChild(summaryButtonsWrapper);
+      shoppingBagSection.appendChild(summaryWrapper); 
+      displaySection.appendChild(shoppingBagSection);
+      products.style.display = 'none';
+    }
 });
