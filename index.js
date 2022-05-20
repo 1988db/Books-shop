@@ -229,8 +229,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const drawProductCard = (object) => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
-        productCard.dataset.id = object.id;
-        productCard.addEventListener('click', openPopup);        
+        productCard.dataset.id = object.id;                
         const contentWrapper = document.createElement('div');
         contentWrapper.classList.add('content-wrapper');
         productCard.appendChild(contentWrapper);
@@ -263,6 +262,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         const cardButton2 = document.createElement('div');
         cardButton1.classList.add('card-button', 'show-more');
         cardButton2.classList.add('card-button', 'add-to-bag');
+        cardButton1.addEventListener('click', openPopup)
         cardButton1.textContent = 'Show more';
         cardButton2.textContent = 'Add to bag';
         cardButtonsWrapper.appendChild(cardButton1);
