@@ -30,18 +30,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
     liBooks.textContent = 'Books';
     const liContacts = document.createElement('li');
     liContacts.textContent = 'Contacts';
-    const liShoppingCart = document.createElement('li');
-    liShoppingCart.textContent = 'Shopping cart';    
+    const liShoppingbag = document.createElement('li');
+    liShoppingbag.textContent = 'Shopping bag';    
     ul.appendChild(liBooks);
     ul.appendChild(liContacts);
-    ul.appendChild(liShoppingCart);
-    const shoppingCartWrapper = document.createElement('div');
-    shoppingCartWrapper.classList.add('shopping-cart-wrapper');
-    navWrapper.appendChild(shoppingCartWrapper);
+    ul.appendChild(liShoppingbag);
+    const shoppingbagWrapper = document.createElement('div');
+    shoppingbagWrapper.classList.add('shopping-bag-wrapper');
+    navWrapper.appendChild(shoppingbagWrapper);
     const booksCount = document.createElement('div');
     booksCount.classList.add('books-count');
     booksCount.textContent = '0';    
-    shoppingCartWrapper.appendChild(booksCount);   
+    shoppingbagWrapper.appendChild(booksCount);   
 
     //display section
     const displaySection = document.createElement('section');
@@ -225,8 +225,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const wrapper = document.querySelector('.wrapper');
     wrapper.appendChild(fragment);
 
-    //function draw product cart
-    const drawProductCart = (object) => {
+    //function draw product bag
+    const drawProductbag = (object) => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
         productCard.dataset.id = object.id;
@@ -262,9 +262,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
         const cardButton1 = document.createElement('div');
         const cardButton2 = document.createElement('div');
         cardButton1.classList.add('card-button', 'show-more');
-        cardButton2.classList.add('card-button', 'add-to-cart');
+        cardButton2.classList.add('card-button', 'add-to-bag');
         cardButton1.textContent = 'Show more';
-        cardButton2.textContent = 'Add to cart';
+        cardButton2.textContent = 'Add to bag';
         cardButtonsWrapper.appendChild(cardButton1);
         cardButtonsWrapper.appendChild(cardButton2);
         productCard.appendChild(cardButtonsWrapper);
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     function addProducts(array) {        
         array.forEach(el => {
             el.id = array.indexOf(el);
-            drawProductCart(el);
+            drawProductbag(el);
         });
     }
 
@@ -291,5 +291,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //close Popup function
     function closePopup() {
         popup.style.display = 'none';
+    }
+
+    //add to bag
+
+    //function addTobag() {
+
     }
 });

@@ -48,7 +48,7 @@ nav {
     margin-right: 1rem;
 }
 
-.shopping-cart-wrapper {
+.shopping-bag-wrapper {
     margin-right: 1.25rem;
     display: inline-block;
 }
@@ -151,12 +151,12 @@ nav {
     cursor: pointer;
 }
 
-.add-to-cart {
+.add-to-bag {
     background-color: tomato;
     margin-left: 3px;
 }
 
-.add-to-cart:hover {
+.add-to-bag:hover {
     background-color: rgb(253, 115, 91);
     cursor: pointer;
 }
