@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let booksQuantity = 0;
     let totalPrice = 0;
     let draggedBook;
+    let pages = [];
     //main
     const main = document.createElement('main')
     //header section
@@ -32,12 +33,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
     ul.classList.add('menu-li');    
     nav.appendChild(ul);    
     const liBooks = document.createElement('li');
+    liBooks.classList.add('li-books');
     liBooks.textContent = 'Books';
+    liBooks.addEventListener('click', showProducts)
     const liContacts = document.createElement('li');
+    liContacts.classList.add('li-books');
     liContacts.textContent = 'Contacts';
     const liShoppingbag = document.createElement('li');
+    liShoppingbag.classList.add('li-shopping-bag');
     liShoppingbag.textContent = 'Shopping bag';
-    liShoppingbag.addEventListener('click', drawShoppingBag)
+    liShoppingbag.addEventListener('click', showBag)
     liShoppingbag.addEventListener('dragover', dragOver);
     liShoppingbag.addEventListener('dragenter', dragEnter);
     liShoppingbag.addEventListener('dragleave', dragLeave);
@@ -56,8 +61,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //display section
     const displaySection = document.createElement('section');
     displaySection.classList.add('display');
-    //products
+      //products
     const products = document.createElement('div');
+    pages.push(products);
     products.classList.add('products');
     displaySection.appendChild(products);
     const productsH2 = document.createElement('h2');
@@ -86,6 +92,41 @@ document.addEventListener('DOMContentLoaded', ()=> {
     popupContainer.appendChild(popupDescription);
     popupContainer.appendChild(popupClose);
     productsContainer.appendChild(popup);
+      //shopping bag     
+    const shoppingBagSection = document.createElement('div');
+    shoppingBagSection.classList.add('shopping-bag-section');
+    pages.push(shoppingBagSection);
+    const shoppingBagHeading = document.createElement('h2');
+    shoppingBagHeading.classList.add('shopping-bag-heading');
+    shoppingBagHeading.textContent = 'Your shopping bag';
+    shoppingBagSection.appendChild(shoppingBagHeading);
+    const shoppingBagContent = document.createElement('div');
+    shoppingBagContent.classList.add('shopping-bag-content');
+    const shoppingBagInfo = document.createElement('h3');
+    shoppingBagInfo.classList.add('shopping-bag-info');
+    shoppingBagInfo.textContent = 'Your shopping bag is empty. Drag and drop chosen book to the shopping bag or click on "Add to bag" button on chosen book card';
+    shoppingBagContent.appendChild(shoppingBagInfo);
+    shoppingBagSection.appendChild(shoppingBagContent);
+    const summaryWrapper = document.createElement('div');
+    summaryWrapper.classList.add('summary-wrapper');
+    const total = document.createElement('span');
+    total.classList.add('total');
+    total.textContent = 'Total: $0';
+    summaryWrapper.appendChild(total);
+    const summaryButtonsWrapper = document.createElement('div');
+    summaryButtonsWrapper.classList.add('summary-buttons-wrapper');
+    const removeAllBtn = document.createElement('div');
+    removeAllBtn.classList.add('summary-btn', 'remove-all');
+    removeAllBtn.textContent = 'Remove all';
+    summaryButtonsWrapper.appendChild(removeAllBtn);
+    const confirmBtn = document.createElement('div');
+    confirmBtn.classList.add('summary-btn', 'confirm');
+    confirmBtn.textContent = 'Confirm order';
+    summaryButtonsWrapper.appendChild(confirmBtn);
+    summaryWrapper.appendChild(summaryButtonsWrapper);
+    shoppingBagSection.appendChild(summaryWrapper); 
+    displaySection.appendChild(shoppingBagSection);
+
     //footer section
     const footer = document.createElement('footer');
     const githubWrapper = document.createElement('div');
@@ -329,41 +370,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
         booksCount.style.fontSize = '0.6rem';
       }
     }
+    
+    //show proucts
+    function showProducts() {
+      pages.forEach(el => el.classList.remove('visible'));
+      pages.forEach(el => el.classList.add('hidden'));
+      pages[0].classList.add('visible');
+    }    
 
-     //draw shopping bag
-     function drawShoppingBag() {
-      const shoppingBagSection = document.createElement('div');
-      shoppingBagSection.classList.add('shopping-bag-section');
-      const shoppingBagHeading = document.createElement('h2');
-      shoppingBagHeading.classList.add('shopping-bag-heading');
-      shoppingBagHeading.textContent = 'Your shopping bag';
-      shoppingBagSection.appendChild(shoppingBagHeading);
-      const shoppingBagContent = document.createElement('div');
-      shoppingBagContent.classList.add('shopping-bag-content');
-      const shoppingBagInfo = document.createElement('h3');
-      shoppingBagInfo.classList.add('shopping-bag-info');
-      shoppingBagInfo.textContent = 'Your shopping bag is empty. Drag and drop chosen book to the shopping bag or click on "Add to bag" button on chosen book card';
-      shoppingBagContent.appendChild(shoppingBagInfo);
-      shoppingBagSection.appendChild(shoppingBagContent);
-      const summaryWrapper = document.createElement('div');
-      summaryWrapper.classList.add('summary-wrapper');
-      const total = document.createElement('span');
-      total.classList.add('total');
-      total.textContent = 'Total: $0';
-      summaryWrapper.appendChild(total);
-      const summaryButtonsWrapper = document.createElement('div');
-      summaryButtonsWrapper.classList.add('summary-buttons-wrapper');
-      const removeAllBtn = document.createElement('div');
-      removeAllBtn.classList.add('summary-btn', 'remove-all');
-      removeAllBtn.textContent = 'Remove all';
-      summaryButtonsWrapper.appendChild(removeAllBtn);
-      const confirmBtn = document.createElement('div');
-      confirmBtn.classList.add('summary-btn', 'confirm');
-      confirmBtn.textContent = 'Confirm order';
-      summaryButtonsWrapper.appendChild(confirmBtn);
-      summaryWrapper.appendChild(summaryButtonsWrapper);
-      shoppingBagSection.appendChild(summaryWrapper); 
-      displaySection.appendChild(shoppingBagSection);
-      products.style.display = 'none';
+    //show bag
+    function showBag() {
+      pages.forEach(el => el.classList.remove('visible'));
+      pages.forEach(el => el.classList.add('hidden'));
+      pages[1].classList.add('visible');
     }
+
+   
 });
