@@ -547,14 +547,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
      const alert = document.querySelector('span.surname');      
     if(completionForm.surname.value.length < 5) {         
       alert.style.display = 'inline-block';      
-      alert.textContent = 'Your name is too short';
+      alert.textContent = 'Your surname is too short';
       completionForm.surname.classList.remove('green');
       completionForm.surname.classList.add('red');      
     } 
     if (completionForm.surname.value.split('').some(el => 
       {return el == 0 || el == 1 || el == 2 || el == 3 || el == 4 || el == 5 || el == 6 || el == 7 || el == 8 || el == 9})) {      
       alert.style.display = 'inline-block';      
-      alert.textContent = 'Name cannot contain numbers';
+      alert.textContent = 'Surame cannot contain numbers';
       completionForm.surname.classList.remove('green');
       completionForm.surname.classList.add('red');
     }
@@ -598,5 +598,81 @@ document.addEventListener('DOMContentLoaded', ()=> {
       completionForm.date.classList.add('green');
      }
    }
+
+   completionForm.street.addEventListener('focusout', streetValidate)
    
+   function streetValidate() {
+     const alert = document.querySelector('span.street');      
+    if(completionForm.street.value.length < 5) {         
+      alert.style.display = 'inline-block';      
+      alert.textContent = 'Street name is too short';
+      completionForm.street.classList.remove('green');
+      completionForm.street.classList.add('red');      
+    }    
+    if (completionForm.street.value.length >= 5){
+          alert.style.display = 'none';
+          completionForm.street.classList.remove('red');
+          completionForm.street.classList.add('green');
+    }
+    if(completionForm.street.value === '') {      
+      alert.style.display = 'inline-block';      
+      alert.textContent = 'Field cannot be empty';
+      completionForm.street.classList.remove('green');
+      completionForm.street.classList.add('red');      
+    }
+   }
+
+   completionForm.houseNr.addEventListener('focusout', houseValidate)
+   
+   function houseValidate() {
+     const alert = document.querySelector('span.house-nr');
+    if (completionForm.houseNr.value.split('').length != 0 && completionForm.houseNr.value.split('').every(el =>
+      {return el == 0 || el == 1 || el == 2 || el == 3 || el == 4 || el == 5 || el == 6 || el == 7 || el == 8 || el == 9})){
+          
+          alert.style.display = 'none';          
+          completionForm.houseNr.classList.remove('red');
+          completionForm.houseNr.classList.add('green');
+    } else {
+        alert.style.display = 'inline-block';
+        alert.textContent = 'Only positive numbers. Field cannot be left empty'        
+        completionForm.houseNr.classList.remove('green');
+        completionForm.houseNr.classList.add('red');
+    } 
+   }
+   
+   completionForm.flat.addEventListener('focusout', flatValidate)
+   
+   function flatValidate() {
+     const alert = document.querySelector('span.flat');
+    if (completionForm.flat.value.split('').length != 0 && 
+        (completionForm.flat.value.split('')[0] == 0 ||
+         completionForm.flat.value.split('')[0] == 1 ||
+         completionForm.flat.value.split('')[0] == 2 ||
+         completionForm.flat.value.split('')[0] == 3 ||
+         completionForm.flat.value.split('')[0] == 4 ||
+         completionForm.flat.value.split('')[0] == 5 ||
+         completionForm.flat.value.split('')[0] == 6 ||
+         completionForm.flat.value.split('')[0] == 7 ||
+         completionForm.flat.value.split('')[0] == 8 ||
+         completionForm.flat.value.split('')[0] == 9
+        ) && (
+         completionForm.flat.value.split('').splice(-1,1).every(el => {
+           return el == '-' || el == 0 || el == 1 || el == 2 || el == 3 || el == 3 || el == 4 || el == 5 || el == 6 || el == 7 || el == 8 || el == 9
+         })
+        )
+        ){          
+          alert.style.display = 'none';          
+          completionForm.flat.classList.remove('red');
+          completionForm.flat.classList.add('green');
+    } else {
+        alert.style.display = 'inline-block';
+        alert.textContent = 'Only positive numbers. Field cannot be left empty'        
+        completionForm.flat.classList.remove('green');
+        completionForm.flat.classList.add('red');
+    } 
+   }
 });
+
+/*
+
+    */
