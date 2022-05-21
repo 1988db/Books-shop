@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let totalPrice = 0;
     let draggedBook;
     let pages = [];
+    const closeFormBtn = document.getElementById('close-form');
+    closeFormBtn.addEventListener('click', closeConfForm)
+
+
     //main
     const main = document.createElement('main')
     //header section
@@ -77,7 +81,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     main.appendChild(displaySection);
       //pop-up product card
     const popup = document.createElement('div');
-    popup.classList.add('popup');
+    popup.classList.add('popup');  
     const popupContainer = document.createElement('div');
     popupContainer.classList.add('popup-container');
     popup.appendChild(popupContainer);
@@ -110,7 +114,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     shoppingBagSection.appendChild(shoppingBagContent);
     const summaryWrapper = document.createElement('div');
     summaryWrapper.classList.add('summary-wrapper', 'hidden');
-    //Total sum in summary bar in the shopping bag
+      //Total sum in summary bar in the shopping bag
     const totalSumWrapper = document.createElement('div');
     summaryWrapper.appendChild(totalSumWrapper);
     const total = document.createElement('span');
@@ -125,15 +129,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
     const removeAllBtn = document.createElement('div');
     removeAllBtn.classList.add('summary-btn', 'remove-all');
     removeAllBtn.textContent = 'Remove all';
+    removeAllBtn.setAttribute('title', 'Remove all books from your shopping bag');
     removeAllBtn.addEventListener('click', removeAllFunc);
     summaryButtonsWrapper.appendChild(removeAllBtn);
     const confirmBtn = document.createElement('div');
     confirmBtn.classList.add('summary-btn', 'confirm');
     confirmBtn.textContent = 'Confirm order';
+    confirmBtn.addEventListener('click', openConfForm);
+    confirmBtn.setAttribute('title', 'Finish your order');
     summaryButtonsWrapper.appendChild(confirmBtn);
     summaryWrapper.appendChild(summaryButtonsWrapper);
     shoppingBagSection.appendChild(summaryWrapper); 
-    displaySection.appendChild(shoppingBagSection);
+    displaySection.appendChild(shoppingBagSection);    
 
     //footer section
     const footer = document.createElement('footer');
@@ -145,7 +152,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     githubWrapper.appendChild(githubLogo);
     const github = document.createElement('a');
     github.classList.add('github');
-    github.setAttribute('href', 'https://github.com/1988db');
+    github.setAttribute('href', 'https://github.com/1988db/Books-shop');
     github.setAttribute('target', '_blank');
     github.textContent = '1988db 2022';
     githubWrapper.appendChild(github);
@@ -264,7 +271,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
         productCard.setAttribute('draggable', true);
         productCard.addEventListener('dragstart', dragStart);
         productCard.addEventListener('dragend', dragEnd);        
-        productCard.dataset.id = object.id;                
+        productCard.dataset.id = object.id;
+        productCard.setAttribute('title', 'Drag and drop book to the shopping bag in the top right corner, in order to add book to your shopping bag')               
         const contentWrapper = document.createElement('div');
         contentWrapper.classList.add('content-wrapper');
         productCard.appendChild(contentWrapper);
@@ -297,6 +305,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
         const cardButton2 = document.createElement('div');
         cardButton1.classList.add('card-button', 'show-more');
         cardButton2.classList.add('card-button', 'add-to-bag');
+        cardButton1.setAttribute('title', 'See book description');
+        cardButton2.setAttribute('title', 'Add to shopping bag');
         cardButton1.addEventListener('click', openPopup);
         cardButton2.addEventListener('click', addToBag);
         cardButton1.textContent = 'Show more';
@@ -327,7 +337,19 @@ document.addEventListener('DOMContentLoaded', ()=> {
     //close Popup function
     function closePopup() {
       popup.style.display = 'none';
-    }   
+    }
+
+    //open confirmation form
+    function openConfForm() {
+      let formBackground = document.querySelector('.form-background');
+      formBackground.style.display = 'block';
+    }
+
+    //close confirmation form
+    function closeConfForm() {        
+      let formBackground = document.querySelector('.form-background');
+      formBackground.style.display = 'none';
+    }
 
     //drag-drop functions
 
@@ -431,9 +453,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     function checkQuantity() {
       //change font size in shopping bag counter
       if (booksQuantity < 100) {
-        booksCount.style.fontSize = '0.8rem';
+        booksCount.style.fontSize = '1rem';
       } else if(booksQuantity > 99) {
-        booksCount.style.fontSize = '0.6rem';
+        booksCount.style.fontSize = '0.8rem';
       }
       //show/hide info in shopping bag
       if (booksQuantity == 0) {

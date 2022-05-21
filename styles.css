@@ -35,14 +35,14 @@ header {
 
 .logo {
     font-size: 2rem;
-    letter-spacing: 0.06rem;
-    text-shadow: 2px 2px 3px rgb(237, 233, 233);  
+    letter-spacing: 0.16rem;
+    text-shadow: 1px 1px 3px rgb(237, 233, 233);  
 }
 
 .logo-sub {
     font-size: 0.8rem;
     letter-spacing: 0.06rem;
-    text-shadow: 2px 2px 3px rgb(237, 233, 233);
+    text-shadow: 1px 1px 3px rgb(237, 233, 233);
 }
 
 nav {
@@ -57,7 +57,12 @@ nav {
     display: inline-block;
     margin-right: 1rem;
     font-size: 1.1rem;
-    text-shadow: 2px 2px 5px rgb(237, 233, 233);
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgb(237, 233, 233);
+}
+
+.menu-li li:hover {
+    color:lightgrey;
 }
 
 .li-books, .li-shopping-bag {
@@ -73,11 +78,13 @@ nav {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
+    font-weight: 600;
     background-color: red;
     border-radius: 50%;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    box-shadow: 3px 3px 5px rgb(221, 82, 82); 
 }
 
 .display {
@@ -159,7 +166,7 @@ nav {
     justify-content: space-between;
 }
 
-.card-button, .popup-close, .summary-btn {
+.card-button, .popup-close, .summary-btn, .submit-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -169,7 +176,7 @@ nav {
     box-shadow: 2px 2px 5px rgb(182, 179, 179); 
 }
 
-.show-more, .popup-close, .confirm {
+.show-more, .popup-close, .confirm, .submit-btn {
     background-color: antiquewhite;
     margin-right: 3px;    
 }
@@ -216,7 +223,9 @@ nav {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
+  box-shadow: 2px 2px 5px rgb(90, 87, 87);
+  border: 1px solid black;
+  border-radius: 5px;
   width: 30%; /* Could be more or less, depending on screen size */
   display: flex;
   flex-direction: column;
@@ -382,4 +391,118 @@ footer {
 
 .visible {
     display: flex;
+}
+
+/* HTML form */
+
+.form-background {
+  display: none;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.form-container {
+  background-color: #fefefe;
+  margin: calc((100vh - 660px)/2) auto; /* 15% from the top and centered */
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgb(90, 87, 87);
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 60%; /* Could be more or less, depending on screen size */
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header-wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.order-copletion {
+    width: 99%;    
+}
+
+.close-form-btn-wrapper span{
+    font-weight: 700;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+fieldset {
+    padding: 10px 20px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-items: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-wrapper:last-of-type {
+    margin-bottom: 0;
+}
+
+.input-wrapper label {
+    width: 16%;
+}
+
+.input-wrapper input {
+    width: 40%
+}
+
+.input-wrapper .alert {
+    width: 44%;
+}
+
+.payment .input-wrapper label {
+    width: 6%;
+}
+
+.payment .input-wrapper input, .gift .input-wrapper input {
+    width: 4%;
+}
+
+.payment .input-wrapper .alert {
+    width: 90%;
+}
+
+.gift .input-wrapper label {
+    width: 20%;
+}
+
+.gift .input-wrapper .alert {
+    width: 76%;
+}
+
+[type=radio], .payment label, .bonus label {
+    cursor: pointer;
+}
+
+.submit-btn {
+    width: 150px;
+    margin-top: 10px;
+}
+
+.disabled {
+    cursor: not-allowed;
 }
