@@ -20,7 +20,7 @@
                 <h2 class="order-copletion">Please fill in the form below to complete your order</h2>
                 <div class="close-form-btn-wrapper"><span id="close-form"title="Close">X</span></div>
             </div>            
-            <form>
+            <form id="completion-form">
                 <fieldset class="address">
                     <legend>Address</legend>
                     <div class="input-wrapper">
@@ -34,7 +34,7 @@
                         <span class="alert surname"></span>
                     </div>
                     <div class="input-wrapper">
-                        <label for="deliver-date">Delivery date</label>
+                        <label for="date">Delivery date</label>
                         <input type="date" name="date" id="date"></input>
                         <span class="alert date"></span>
                     </div>
@@ -70,25 +70,25 @@
                     <legend>Gift - choose max two</legend>
                     <div class="input-wrapper">
                         <label for="gift">Pack as gift</label>
-                        <input type="radio" name="bonus" id="gift" value="gift">
+                        <input type="checkbox" name="bonus" id="gift" value="gift">
                         <span class="alert gift"></span>
                     </div>
                     <div class="input-wrapper">
                         <label for="postcard">Add postcard</label>
-                        <input type="radio" name="bonus" id="postcard" value="postcard">
+                        <input type="checkbox" name="bonus" id="postcard" value="postcard">
                         <span class="alert postcard"></span>                      
                     </div>
                     <div class="input-wrapper">
                         <label for="discount">2% discount for next order</label>
-                        <input type="radio" name="bonus" id="discount" value="discount">
+                        <input type="checkbox" name="bonus" id="discount" value="discount">
                         <span class="alert discount"></span>
                     </div>
                     <div class="input-wrapper">
                         <label for="pencil">Branded pen or pencil</label>
-                        <input type="radio" name="bonus" id="pencil" value="pencil">                        
+                        <input type="checkbox" name="bonus" id="pencil" value="pencil">                        
                     </div>
                 </fieldset>
-                <button class="submit-btn disabled" type="submit" disabled>Submit</button>
+                <button id="submit" class="submit-btn disabled" type="submit" disabled>Submit</button>
             </form>
         </div>
     </div>

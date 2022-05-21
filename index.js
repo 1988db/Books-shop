@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let draggedBook;
     let pages = [];
     const closeFormBtn = document.getElementById('close-form');
-    closeFormBtn.addEventListener('click', closeConfForm)
+    closeFormBtn.addEventListener('click', closeConfForm);
+    const completionForm = document.getElementById('completion-form');
+    const submitBtn = document.getElementById('submit');
 
 
     //main
@@ -505,5 +507,96 @@ document.addEventListener('DOMContentLoaded', ()=> {
       checkQuantity();
     }
 
+   //validate order form
+
+   completionForm.name.addEventListener('focusout', nameValidate);
+
+   function nameValidate() {
+     const alert = document.querySelector('span.name');      
+    if(completionForm.name.value.length < 4) {         
+      alert.style.display = 'inline-block';      
+      alert.textContent = 'Your name is too short';
+      completionForm.name.classList.remove('green');
+      completionForm.name.classList.add('red');      
+    } 
+    if (completionForm.name.value.split('').some(el => 
+      {return el == 0 || el == 1 || el == 2 || el == 3 || el == 4 || el == 5 || el == 6 || el == 7 || el == 8 || el == 9})) {      
+      alert.style.display = 'inline-block';      
+      alert.textContent = 'Name cannot contain numbers';
+      completionForm.name.classList.remove('green');
+      completionForm.name.classList.add('red');
+    }
+    if (completionForm.name.value.length >= 4 && 
+      !completionForm.name.value.split('').some(el => 
+        {return el == 0 || el == 1 || el == 2 || el == 3 || el == 4 || el == 5 || el == 6 || el == 7 || el == 8 || el == 9})){
+          alert.style.display = 'none';
+          completionForm.name.classList.remove('red');
+          completionForm.name.classList.add('green');
+        }
+    if(completionForm.name.value === '') {      
+      alert.style.display = 'inline-block';      
+      alert.textContent = 'Field cannot be empty';
+      completionForm.name.classList.remove('green');
+      completionForm.name.classList.add('red');      
+    }
+   }
+
+   completionForm.surname.addEventListener('focusout', surnameValidate)
+   
+   function surnameValidate() {
+     const alert = document.querySelector('span.surname');      
+    if(completionForm.surname.value.length < 5) {         
+      alert.style.display = 'inline-block';      
+      alert.textContent = 'Your name is too short';
+      completionForm.surname.classList.remove('green');
+      completionForm.surname.classList.add('red');      
+    } 
+    if (completionForm.surname.value.split('').some(el => 
+      {return el == 0 || el == 1 || el == 2 || el == 3 || el == 4 || el == 5 || el == 6 || el == 7 || el == 8 || el == 9})) {      
+      alert.style.display = 'inline-block';      
+      alert.textContent = 'Name cannot contain numbers';
+      completionForm.surname.classList.remove('green');
+      completionForm.surname.classList.add('red');
+    }
+    if (completionForm.surname.value.length >= 5 && 
+      !completionForm.surname.value.split('').some(el => 
+        {return el == 0 || el == 1 || el == 2 || el == 3 || el == 4 || el == 5 || el == 6 || el == 7 || el == 8 || el == 9})){
+          alert.style.display = 'none';
+          completionForm.surname.classList.remove('red');
+          completionForm.surname.classList.add('green');
+        }
+    if(completionForm.surname.value === '') {      
+      alert.style.display = 'inline-block';      
+      alert.textContent = 'Field cannot be empty';
+      completionForm.surname.classList.remove('green');
+      completionForm.surname.classList.add('red');      
+    }
+   }
+
+   completionForm.date.addEventListener('focusout', dateValidate);
+
+   function dateValidate() {
+     const alert = document.querySelector('span.date');
+     let todaysDate = new Date();
+     let deliveryDate = new Date(completionForm.date.value);
+
+     if (deliveryDate <= todaysDate) {
+      alert.style.display = 'inline-block';      
+      alert.textContent = 'Delivery date cannot be earlier than tomorrow';
+      completionForm.date.classList.remove('green');
+      completionForm.date.classList.add('red');
+     }
+     if (completionForm.date.value === '') {
+      alert.style.display = 'inline-block';      
+      alert.textContent = 'Choose delivaery date';
+      completionForm.date.classList.remove('green');
+      completionForm.date.classList.add('red');
+     }
+     if (completionForm.date.value !== '' && deliveryDate > todaysDate) {
+      alert.style.display = 'none';     
+      completionForm.date.classList.remove('red');
+      completionForm.date.classList.add('green');
+     }
+   }
    
 });

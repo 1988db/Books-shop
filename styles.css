@@ -478,7 +478,7 @@ legend {
     width: 6%;
 }
 
-.payment .input-wrapper input, .gift .input-wrapper input {
+.payment .input-wrapper input, .bonus .input-wrapper input {
     width: 4%;
 }
 
@@ -486,15 +486,15 @@ legend {
     width: 90%;
 }
 
-.gift .input-wrapper label {
+.bonus .input-wrapper label {
     width: 20%;
 }
 
-.gift .input-wrapper .alert {
+.bonus .input-wrapper .alert {
     width: 76%;
 }
 
-[type=radio], .payment label, .bonus label {
+[type=checkbox], [type=radio], .payment label, .bonus label {
     cursor: pointer;
 }
 
@@ -505,4 +505,26 @@ legend {
 
 .disabled {
     cursor: not-allowed;
+}
+
+.alert {
+    display: none;
+    border: 1px solid darkred;
+    background-color: pink;
+    font-size: 1rem;
+    font-weight: 700;
+    color: darkred;
+    margin-left: 10px;
+}
+
+.red {
+    border: 2px solid darkred;
+}
+
+.green {
+    border: 2px solid green;
+}
+
+.empty {
+    border: initial;
 }
