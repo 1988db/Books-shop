@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto Flex', sans-serif;
+}
+
+body {
+    background-image: url(img/background2.png);
 }
 
 .wrapper {
@@ -12,13 +17,16 @@
 header {
     margin: 0 auto;
     display: flex;
+    height: 70px;
     justify-content: space-between;
     align-items: center;
     background-color: black;
+    background-image: url(img/background.png);
+    background-position: 110px -120px;
     color: white;
     position: sticky;
     top: 0;
-    box-shadow: 2px 2px 5px rgb(182, 179, 179);
+    box-shadow: 0 4px 5px rgb(111, 108, 108);
 }
 
 .logo-wrapper {
@@ -27,12 +35,14 @@ header {
 
 .logo {
     font-size: 2rem;
-    letter-spacing: 0.06rem;    
+    letter-spacing: 0.06rem;
+    text-shadow: 2px 2px 3px rgb(237, 233, 233);  
 }
 
 .logo-sub {
     font-size: 0.8rem;
     letter-spacing: 0.06rem;
+    text-shadow: 2px 2px 3px rgb(237, 233, 233);
 }
 
 nav {
@@ -46,6 +56,8 @@ nav {
 .menu-li li{
     display: inline-block;
     margin-right: 1rem;
+    font-size: 1.1rem;
+    text-shadow: 2px 2px 5px rgb(237, 233, 233);
 }
 
 .li-books, .li-shopping-bag {
@@ -68,6 +80,10 @@ nav {
     font-size: 0.8rem;
 }
 
+.display {
+    background-image: url(img/background2.png);
+}
+
 .products {
     flex-direction: column;
     padding: 15px 20px;
@@ -76,6 +92,9 @@ nav {
 .our-books, .shopping-bag-heading {
     text-align: center;
     margin-bottom: 15px;
+    font-size: 1.65rem;
+    color: rgb(40, 74, 135);
+    text-shadow: 3px 3px 5px rgb(118, 115, 115); 
 }
 
 .products-container {
@@ -93,7 +112,8 @@ nav {
     justify-content: space-between;
     width: 250px;
     padding: 15px;
-    box-shadow: 2px 2px 5px rgb(182, 179, 179);
+    background-color: white;
+    box-shadow: 4px 4px 5px rgb(111, 108, 108);
     cursor: grab;
 }
 
@@ -145,13 +165,13 @@ nav {
     justify-content: center;
     padding: 5px;
     border: 1px solid black;
-    font-weight: bold;
+    font-weight: 500;
     box-shadow: 2px 2px 5px rgb(182, 179, 179); 
 }
 
 .show-more, .popup-close, .confirm {
     background-color: antiquewhite;
-    margin-right: 3px;
+    margin-right: 3px;    
 }
 
 .confirm {
@@ -221,7 +241,7 @@ nav {
 .shopping-bag-section {
     display: none;
     flex-direction: column;
-    min-height: calc(100vh - 126px);
+    min-height: calc(100vh - 144px);
     padding: 15px 20px;
 }
 
@@ -233,15 +253,80 @@ nav {
     flex-grow: 1;    
 }
 
+.shopping-bag-info {
+    font-size: 1.4rem;
+    color: rgb(40, 74, 135);
+    text-shadow: 3px 3px 5px rgb(118, 115, 115); 
+}
+
+.bag-item {
+    display: flex;    
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+    width: 100%;
+    background-color: white;    
+    box-shadow: 2px 2px 5px rgb(90, 87, 87);
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;   
+}
+
+.nr-wrapper {
+    padding-left: 1rem;
+}
+
+.nr-wrapper, .close-x {
+    font-weight: 500;
+}
+
+.thumb {
+    height: 80px;
+    
+}
+
+ .thumb-wrapper, .author-wrapper, .title-wrapper, .price-wrapper, .nr-wrapper, .close-wrapper  {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+.author-wrapper {
+    width: 15%;
+    color: #888;
+}
+
+.close-wrapper {
+    width: 5%;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 0.5rem;
+}
+
+.title-wrapper {
+    width: 50%;
+    overflow: hidden;
+}
+
+.close-x {
+    cursor: pointer;       
+}
+
 .summary-wrapper {
-    display: none;
+    display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.total {
+.total, .total-sum {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 700;
+}
+
+.total-sum {
+    color: red;
 }
 
 .summary-buttons-wrapper {
@@ -258,7 +343,9 @@ footer {
     padding: 10px 20px;
     color: white;
     background-color: black;
-    box-shadow: -2px -2px 5px rgb(182, 179, 179);
+    background-image: url(img/background.png);
+    background-position: 250px -100px;    
+    box-shadow: 0 -4px 5px rgb(111, 108, 108);
 }
 
 .github-wrapper {
@@ -269,7 +356,9 @@ footer {
 
 .github:link {
     color: white;
+    font-weight: 500;
     text-decoration: none;
+    text-shadow: 2px 2px 3px rgb(237, 233, 233);  
 }
 
 .github:visited {

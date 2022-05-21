@@ -109,16 +109,23 @@ document.addEventListener('DOMContentLoaded', ()=> {
     shoppingBagContent.appendChild(shoppingBagInfo);
     shoppingBagSection.appendChild(shoppingBagContent);
     const summaryWrapper = document.createElement('div');
-    summaryWrapper.classList.add('summary-wrapper');
+    summaryWrapper.classList.add('summary-wrapper', 'hidden');
+    //Total sum in summary bar in the shopping bag
+    const totalSumWrapper = document.createElement('div');
+    summaryWrapper.appendChild(totalSumWrapper);
     const total = document.createElement('span');
     total.classList.add('total');
-    total.textContent = 'Total: $0';
-    summaryWrapper.appendChild(total);
+    total.textContent = 'Total: $ ';
+    const totalSum = document.createElement('span');
+    totalSum.classList.add('total-sum');      
+    totalSumWrapper.appendChild(total);
+    totalSumWrapper.appendChild(totalSum);
     const summaryButtonsWrapper = document.createElement('div');
     summaryButtonsWrapper.classList.add('summary-buttons-wrapper');
     const removeAllBtn = document.createElement('div');
     removeAllBtn.classList.add('summary-btn', 'remove-all');
     removeAllBtn.textContent = 'Remove all';
+    removeAllBtn.addEventListener('click', removeAllFunc);
     summaryButtonsWrapper.appendChild(removeAllBtn);
     const confirmBtn = document.createElement('div');
     confirmBtn.classList.add('summary-btn', 'confirm');
@@ -346,10 +353,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
       draggedBook = undefined;      
     }
 
-    function dragDrop() {
+    function dragDrop() {            
       pickedBooks.push(draggedBook);
       booksQuantity = pickedBooks.length;
       booksCount.textContent = booksQuantity;
+      drawBookList(draggedBook);
       checkQuantity();
     }
 
@@ -409,6 +417,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
       closeWrapper.classList.add('close-wrapper');
       const closeX = document.createElement('div');
       closeX.classList.add('close-x');
+      closeX.setAttribute('title', 'Remove from the bag');
       closeX.textContent = 'X';
       closeX.addEventListener('click', removeBook);
       closeWrapper.appendChild(closeX);
@@ -417,14 +426,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
       
     }
 
-    //check books quantity    
+    //check books quantity and total price and item position in the shopping bag  
 
     function checkQuantity() {
+      //change font size in shopping bag counter
       if (booksQuantity < 100) {
         booksCount.style.fontSize = '0.8rem';
       } else if(booksQuantity > 99) {
         booksCount.style.fontSize = '0.6rem';
       }
+      //show/hide info in shopping bag
       if (booksQuantity == 0) {
         shoppingBagInfo.classList.remove('hidden')
         shoppingBagInfo.classList.add('visible');        
@@ -432,6 +443,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
         shoppingBagInfo.classList.remove('visible');
         shoppingBagInfo.classList.add('hidden')
       }
+      //show/hide summary bar
+      if(booksQuantity > 0) {
+        summaryWrapper.classList.remove('hidden');
+      } else if (booksQuantity < 1) {
+        summaryWrapper.classList.add('hidden');
+      }
+      //count total price
+      totalPrice = pickedBooks.reduce((total, current) => 
+      {return total + booksList[current].price},0);
+      totalSum.textContent = totalPrice;
+      //item position in the shopping bag
+      shoppingBagContent.querySelectorAll('.bag-item').forEach(el => 
+        { el.children[0].textContent = Array.from(shoppingBagContent.children).indexOf(el)}
+        );
     }
     
     //show proucts
@@ -446,6 +471,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
       pages.forEach(el => el.classList.remove('visible'));
       pages.forEach(el => el.classList.add('hidden'));
       pages[1].classList.add('visible');
+    }
+
+    //remove All items from shopping bag
+    function removeAllFunc() {
+      pickedBooks = [];
+      booksQuantity = pickedBooks.length;
+      booksCount.textContent = booksQuantity;
+      let pickedProducts = shoppingBagContent.querySelectorAll('.bag-item');
+      pickedProducts.forEach(el => shoppingBagContent.removeChild(el));
+      checkQuantity();
     }
 
    
