@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', ()=> {
 
     //variables
+    let booksList = []
     let pickedBooks = [];
     let booksQuantity = 0;
     let bookNr = 0;
