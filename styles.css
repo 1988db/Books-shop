@@ -525,6 +525,12 @@ legend {
     border: 2px solid green;
 }
 
-.empty {
-    border: initial;
+.red-check {
+    outline: 2px solid red;
+    width: 13px;
+}
+
+.green-check {
+    outline: 2px solid green;
+    width: 13px;
 }
