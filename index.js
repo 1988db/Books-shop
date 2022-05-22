@@ -692,11 +692,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
    completionForm.payment[1].addEventListener('focusout', paymentValidate);
    completionForm.payment[0].addEventListener('input', formValidate);
    completionForm.payment[1].addEventListener('input', formValidate);
+   
 
-   console.log(completionForm.payment[1])
-
-   function paymentValidate() {
-     console.log('payment')
+   function paymentValidate() {     
      if (completionForm.payment[0].checked || completionForm.payment[1].checked) {
        validPayment = true;
        formValidate();
@@ -767,16 +765,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
       } else {
         completionForm.submit.setAttribute('disabled', 'true');
         completionForm.submit.style.cursor = 'not-allowed';
-      }
-      console.log('valid form', validForm);
-      console.log('valid name', validName);
-      console.log('valid surname', validSurname);
-      console.log('valid date', validDate);
-      console.log('valid street', validStreet);
-      console.log('valid house', validHouse);
-      console.log('valid flat', validFlat);
-      console.log('valid payment', validPayment);
-      console.log('valid bonus', validBonus);
+      }   
       
     }
     formValidate()
