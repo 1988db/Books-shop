@@ -166,7 +166,7 @@ nav {
     justify-content: space-between;
 }
 
-.card-button, .popup-close, .summary-btn, .submit-btn {
+.card-button, .popup-close, .summary-btn, .submit-btn, .orderComplete-close {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,7 +176,7 @@ nav {
     box-shadow: 2px 2px 5px rgb(182, 179, 179); 
 }
 
-.show-more, .popup-close, .confirm, .submit-btn {
+.show-more, .popup-close, .confirm, .submit-btn, .orderComplete-close {
     background-color: antiquewhite;
     margin-right: 3px;    
 }
@@ -185,7 +185,7 @@ nav {
     margin-left: 3px;
 }
 
-.show-more:hover, .popup-close:hover, .confirm:hover {
+.show-more:hover, .popup-close:hover, .confirm:hover, .submit-btn:hover, .orderComplete-close:hover {
     background-color: rgb(255, 245, 231);
     cursor: pointer;
 }
@@ -206,7 +206,7 @@ nav {
 
 /*popup window*/
 
-.popup {
+.popup, .orderComplete {
   display: none;
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -219,7 +219,11 @@ nav {
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.popup-container {
+.orderComplete {
+    z-index: 2;
+}
+
+.popup-container, .orderComplete-container {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -232,17 +236,26 @@ nav {
 
 }
 
-.popup-title {
+.orderComplete-container {
+    width: 60%;
+    z-index: 2;
+}
+
+.popup-title, .orderComplete-title {
     font-size: 1.5rem;
     margin-bottom: 20px;
 }
 
-.popup-description {
+.popup-description, .orderComplete-description {
     font-size: 1.25rem;
     margin-bottom: 20px
 }
 
-.popup-close {
+.orderComplete-description span {
+    display: block;
+}
+
+.popup-close, .orderComplete-close {
     width: 30%;
 }
 

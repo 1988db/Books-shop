@@ -152,7 +152,46 @@ document.addEventListener('DOMContentLoaded', ()=> {
     summaryButtonsWrapper.appendChild(confirmBtn);
     summaryWrapper.appendChild(summaryButtonsWrapper);
     shoppingBagSection.appendChild(summaryWrapper); 
-    displaySection.appendChild(shoppingBagSection);    
+    displaySection.appendChild(shoppingBagSection);
+    
+    //order complete summary    
+    const orderComplete = document.createElement('div');
+    orderComplete.classList.add('orderComplete');  
+    const orderCompleteContainer = document.createElement('div');
+    orderCompleteContainer.classList.add('orderComplete-container');
+    orderComplete.appendChild(orderCompleteContainer);
+    const orderCompleteTitle = document.createElement('h3');
+    orderCompleteTitle.classList.add('orderComplete-title');
+    orderCompleteTitle.textContent = 'Thank you for your order!'    
+    const orderCompleteDescription = document.createElement('p');
+    orderCompleteDescription.classList.add('orderComplete-description');
+    const orderCompleteDescriptionOrderDetails = document.createElement('span');
+    orderCompleteDescriptionOrderDetails.textContent = 'Your order details:';
+    orderCompleteDescription.appendChild(orderCompleteDescriptionOrderDetails);
+    const orderCompleteDescriptionName = document.createElement('span');    
+    orderCompleteDescription.appendChild(orderCompleteDescriptionName);
+    const orderCompleteDescriptionSurname = document.createElement('span');    
+    orderCompleteDescription.appendChild(orderCompleteDescriptionSurname);
+    const orderCompleteDescriptionDate = document.createElement('span');    
+    orderCompleteDescription.appendChild(orderCompleteDescriptionDate);
+    const orderCompleteDescriptionStreet = document.createElement('span');    
+    orderCompleteDescription.appendChild(orderCompleteDescriptionStreet);
+    const orderCompleteDescriptionHouse = document.createElement('span');    
+    orderCompleteDescription.appendChild(orderCompleteDescriptionHouse);
+    const orderCompleteDescriptionFlat = document.createElement('span');    
+    orderCompleteDescription.appendChild(orderCompleteDescriptionFlat);
+    const orderCompleteDescriptionPayment = document.createElement('span');    
+    orderCompleteDescription.appendChild(orderCompleteDescriptionPayment);
+    const orderCompleteDescriptionBonus = document.createElement('span');    
+    orderCompleteDescription.appendChild(orderCompleteDescriptionBonus);
+    const orderCompleteClose = document.createElement('div');
+    orderCompleteClose.classList.add('orderComplete-close');
+    orderCompleteClose.textContent = 'Close';
+    orderCompleteClose.addEventListener('click', reload);
+    orderCompleteContainer.appendChild(orderCompleteTitle);
+    orderCompleteContainer.appendChild(orderCompleteDescription);
+    orderCompleteContainer.appendChild(orderCompleteClose);
+    displaySection.appendChild(orderComplete);
 
     //footer section
     const footer = document.createElement('footer');
@@ -520,6 +559,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
    //validate order form
 
    completionForm.name.addEventListener('focusout', nameValidate);
+   completionForm.name.addEventListener('input', formValidate);
 
    function nameValidate() {
      const alert = document.querySelector('span.name');      
@@ -559,7 +599,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
    }
 
-   completionForm.surname.addEventListener('focusout', surnameValidate)
+   completionForm.surname.addEventListener('focusout', surnameValidate);
+   completionForm.surname.addEventListener('input', formValidate);
    
    function surnameValidate() {
      const alert = document.querySelector('span.surname');      
@@ -600,6 +641,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
    }
 
    completionForm.date.addEventListener('focusout', dateValidate);
+   completionForm.date.addEventListener('input', formValidate);
 
    function dateValidate() {
      const alert = document.querySelector('span.date');
@@ -631,7 +673,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
      }
    }
 
-   completionForm.street.addEventListener('focusout', streetValidate)
+   completionForm.street.addEventListener('focusout', streetValidate);
+   completionForm.street.addEventListener('input', formValidate);
    
    function streetValidate() {
      const alert = document.querySelector('span.street');      
@@ -660,7 +703,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
    }
 
-   completionForm.houseNr.addEventListener('focusout', houseValidate)
+   completionForm.houseNr.addEventListener('focusout', houseValidate);
+   completionForm.houseNr.addEventListener('input', formValidate);
    
    function houseValidate() {
      const alert = document.querySelector('span.house-nr');
@@ -682,7 +726,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     } 
    }
    
-   completionForm.flat.addEventListener('focusout', flatValidate)
+   completionForm.flat.addEventListener('focusout', flatValidate);
+   completionForm.flat.addEventListener('input', formValidate);
    
    function flatValidate() {
      const alert = document.querySelector('span.flat');
@@ -718,8 +763,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
     } 
    }
 
-   completionForm.payment[0].addEventListener('change', paymentValidate);
-   completionForm.payment[1].addEventListener('change', paymentValidate);
+   completionForm.payment[0].addEventListener('focusout', paymentValidate);
+   completionForm.payment[1].addEventListener('focusout', paymentValidate);
+   completionForm.payment[0].addEventListener('input', formValidate);
+   completionForm.payment[1].addEventListener('input', formValidate);
+
+   console.log(completionForm.payment[1])
 
    function paymentValidate() {
      console.log('payment')
@@ -733,6 +782,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
    completionForm.postcard.addEventListener('focusout', checkboxValidate);
    completionForm.discount.addEventListener('focusout', checkboxValidate);
    completionForm.pencil.addEventListener('focusout', checkboxValidate);
+   completionForm.gift.addEventListener('input', formValidate);
+   completionForm.postcard.addEventListener('input', formValidate);
+   completionForm.discount.addEventListener('input', formValidate);
+   completionForm.pencil.addEventListener('input', formValidate);
 
    function checkboxValidate() {
      const alert = document.querySelector('span.gift');
@@ -803,5 +856,32 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
     formValidate()
     
+    //submit function
+
+    submitBtn.addEventListener('click', submitForm);
+
+    function submitForm(e) {
+      e.preventDefault();
+      orderComplete.style.display = 'block';
+      orderCompleteDescriptionName.textContent = 'Name: ' + completionForm.name.value;
+      orderCompleteDescriptionSurname.textContent = 'Surname: ' + completionForm.surname.value;
+      orderCompleteDescriptionDate.textContent = 'Delivery date: ' + completionForm.date.value;
+      orderCompleteDescriptionStreet.textContent = 'Street: ' + completionForm.street.value;
+      orderCompleteDescriptionHouse.textContent = 'House nr: ' + completionForm.houseNr.value;
+      orderCompleteDescriptionFlat.textContent = 'Flat nr: ' + completionForm.flat.value;
+      orderCompleteDescriptionPayment.textContent = 'Payment method: ' + completionForm.payment.value;
+      let checkboxValue = '';
+      checkboxes.forEach(el => {        
+        if (el.checked === true) {
+          checkboxValue += el.value + ', ';
+        }
+      });
+      orderCompleteDescriptionBonus.textContent = 'Choosen bonus: ' + checkboxValue;
+    }
+
+    //reload page
+    function reload() {
+      window.location.reload(true);
+    }
    
 });
