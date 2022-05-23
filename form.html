@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery form</title>
+    <script src="form.js"></script>   
+    <link href="styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800;8..144,900;8..144,1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="form-background">
+        <div class="form-container">
+            <div class="form-header-wrapper">
+                <h2 class="order-copletion">Please fill in the form below to complete your order</h2>
+                <div class="close-form-btn-wrapper"><span id="close-form"title="Close">X</span></div>
+            </div>            
+            <form id="completion-form">
+                <fieldset class="address">
+                    <legend>Address</legend>
+                    <div class="input-wrapper">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name">
+                        <span class="alert name"></span>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="surname">Surname</label>
+                        <input type="text" name="'surname" id="surname">
+                        <span class="alert surname"></span>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="date">Delivery date</label>
+                        <input type="date" name="date" id="date"></input>
+                        <span class="alert date"></span>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="street">Street</label>
+                        <input type="text" name="street" id="street">
+                        <span class="alert street"></span>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="houseNr">House number</label>
+                        <input type="number" name="houseNr" id="houseNr" min="1">
+                        <span class="alert house-nr"></span>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="flat">Flat</label>
+                        <input type="text" name="flat" id="flat">
+                        <span class="alert flat"></span>
+                    </div>
+                </fieldset>
+                <fieldset class="payment">
+                    <legend>Payment</legend>
+                    <div class="input-wrapper">
+                        <label for="card">Card</label>
+                        <input type="radio" name="payment" id="card" value="card">
+                        <span class="alert card"></span>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="cash">Cash</label>
+                        <input type="radio" name="payment" id="cash" value="cash">                        
+                    </div>
+                </fieldset>
+                <fieldset class="bonus">
+                    <legend>Gift - choose max two</legend>
+                    <div class="input-wrapper">
+                        <label for="gift">Pack as gift</label>
+                        <input type="checkbox" name="gift" id="gift" value="gift">
+                        <span class="alert gift"></span>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="postcard">Add postcard</label>
+                        <input type="checkbox" name="postcard" id="postcard" value="postcard">
+                        <span class="alert postcard"></span>                      
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="discount">2% discount for next order</label>
+                        <input type="checkbox" name="discount" id="discount" value="discount">
+                        <span class="alert discount"></span>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="pencil">Branded pen or pencil</label>
+                        <input type="checkbox" name="pencil" id="pencil" value="pencil">                        
+                    </div>
+                </fieldset>
+                <button id="submit" class="submit-btn disabled" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
